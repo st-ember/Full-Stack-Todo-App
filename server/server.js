@@ -16,7 +16,7 @@ app.use(cors());
 
 const secret = process.env.ACCESS_TOKEN_SECRET;
 
-// middleware to validate token
+// middleware to validate token and decode payload
 const withAuth = function(req, res, next) {
     const authHeaders = req.headers["authorization"]
     const token = authHeaders && authHeaders.split(" ")[1];
