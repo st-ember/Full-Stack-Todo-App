@@ -8,6 +8,8 @@ function SigninForm() {
         password: ''
     });
 
+    const [message, setMessage] = useState('');
+
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -23,7 +25,11 @@ function SigninForm() {
         .then(res => res.json())
         .then(json => {
             console.log(json)
+            const message = json.message;
             const token = json.token;
+            if(message) {
+                setMessage(message);
+            }
             if(token) {
                 Cookies.setItem('jwtToken', token, { secure: true, httpOnly: true });
                 navigate(`/todo/${json.userId}`)
@@ -47,10 +53,14 @@ function SigninForm() {
     className='bg-stone-700 w-3/5
     grid grid-cols-1
     rounded
-    mt-28
-    m-auto p-4'
+    mt-28 m-auto p-4
+    relative'
     onSubmit={e => handleSubmit(e)}
     >
+        <div 
+        className='absolute top-6 right-0 left-0
+        text-center text-amber-200'
+        >{message}</div>
         <label htmlFor="email"
         className='m-2'
         >Email</label>
