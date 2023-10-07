@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
-import { Outlet, Link } from "react-router-dom";
+import React from 'react';
+import { Outlet} from "react-router-dom";
 
 function Root() {
-    // if noAuth, show landing page
     return (
         <div>
             <Outlet />
