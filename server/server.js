@@ -7,14 +7,14 @@ const bcrypt = require("bcrypt");
 const validator = require("validator");
 const bodyParser = require("body-parser");
 const jwt = require("jsonwebtoken");
+const port = 3001;
 
 require('dotenv').config();
-
-const port = 3001;
 
 app.use(bodyParser.json());
 app.use(cors());
 
+// middleware to validate token
 const withAuth = function(req, res, next) {
     const authHeaders = req.headers["authorization"]
     const token = authHeaders && authHeaders.split(" ")[1];
@@ -60,6 +60,7 @@ app.post("/signup", async (req, res) => {
         if(!emailIsValid) {
             return res.status(400).json({ message: "not email" });
         };
+        // return true or false from promise to determine if email already exists in db
         const checkEmailUnique =  () => {
             const checkQuery = "SELECT * FROM users WHERE email = ?"
             return new Promise ((resolve, reject) => {
@@ -77,6 +78,7 @@ app.post("/signup", async (req, res) => {
             })
         };
         const emailIsUnique = await checkEmailUnique().catch(error => console.error(error));
+        // if email is unique, insert data into db, else tell client to use different email
         if(emailIsUnique) {
                 console.log({true: emailIsUnique})
                 const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -93,7 +95,7 @@ app.post("/signup", async (req, res) => {
                     }
                 });
             } else {
-                console.log({false: emailIsUnique})
+                res.status(400).json({ message: "account already created with this email" })
             }
         
         
@@ -110,6 +112,7 @@ app.post("/signin", async (req, res) => {
     if(!password) {
         return res.status(400).json({ message: "no password" });
     };
+    // compare password with bcrypt
     const comparePassword = () => {
         const compareQuery = "SELECT password_hash FROM users WHERE email = ?";
         return new Promise ((resolve, reject) => {
@@ -144,12 +147,14 @@ app.post("/signin", async (req, res) => {
             });
         });
     };
+    // if password matches, send token with userId and username as payload
     const passwordMatch = await comparePassword();
     if(passwordMatch) {
         queryUserIdAndUsername()
         .then(queryResults => {
             const payload = { userId: queryResults[0].userId, username: queryResults[0].username };
-            const expirationTime = Math.floor(Date.now() / 1000) + 3600; // Expires in 1 hour
+            // Expires in 1 hour
+            const expirationTime = Math.floor(Date.now() / 1000) + 3600;
             const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: expirationTime });
             res.status(200).json({ message: "password matches", token: token });
         });
