@@ -58,7 +58,7 @@ app.post("/signup", async (req, res) => {
         const userId = uuid.v4();
         const emailIsValid = validator.isEmail(email);
         if(!emailIsValid) {
-            return res.status(400).json({ message: "not email" });
+            return res.status(400).json({ message: "Not email" });
         };
         // return true or false from promise to determine if email already exists in db
         const checkEmailUnique =  () => {
@@ -91,11 +91,11 @@ app.post("/signup", async (req, res) => {
                         console.log("inserted successfully");
                         const payload = { userId: userId, username: username };
                         const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
-                        res.status(200).json({ message: "account created", token: token });
+                        res.status(200).json({ message: "Account created", token: token });
                     }
                 });
             } else {
-                res.status(400).json({ message: "account already created with this email" })
+                res.status(400).json({ message: "An account already exists with this email" })
             }
         
         
