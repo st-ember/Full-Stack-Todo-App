@@ -9,6 +9,8 @@ function SignupForm() {
         password: ''
     });
 
+    const [message, setMessage] = useState('');
+
     const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
@@ -24,8 +26,11 @@ function SignupForm() {
         })
         .then(response => response.json())
         .then(json => {
-            console.log(json)
+            const message = json.message;
             const token = json.token;
+            if(message) {
+                setMessage(message);
+            }
             if(token) {
                 Cookies.setItem('jwtToken', token, { secure: true, httpOnly: true });
                 navigate(`/todo/${json.userId}`);
@@ -50,9 +55,13 @@ function SignupForm() {
     grid grid-cols-1
     rounded
     mt-28
-    m-auto p-4'
+    m-auto p-4 relative'
     onSubmit={e => handleSubmit(e)}
     >
+        <div 
+        className='absolute top-6 right-0 left-0
+        text-center text-amber-200'
+        >{message}</div>
         <label htmlFor="username"
         className='m-2'
         >Username</label>
