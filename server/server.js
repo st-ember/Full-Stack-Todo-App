@@ -107,10 +107,10 @@ app.post("/signup", async (req, res) => {
 app.post("/signin", async (req, res) => {
     const { email, password } = req.body;
     if(!email) {
-        return res.status(400).json({ message: "no email" });
+        return res.status(400).json({ message: "No email" });
     };
     if(!password) {
-        return res.status(400).json({ message: "no password" });
+        return res.status(400).json({ message: "No password" });
     };
     // compare password with bcrypt
     const comparePassword = () => {
@@ -121,7 +121,7 @@ app.post("/signin", async (req, res) => {
                     console.log(err);
                     reject(err);
                 } else if(results.length === 0){
-                    return res.status(400).json({ message: "invalid email" })
+                    return res.status(400).json({ message: "No account created with this email" })
                 }else {
                     const hashedPassword = results[0].password_hash;
                     bcrypt.compare(password, hashedPassword, (err, results) => {
@@ -159,7 +159,7 @@ app.post("/signin", async (req, res) => {
             res.status(200).json({ message: "password matches", token: token });
         });
     } else {
-        res.status(400).json({ message: "password doesn't match" });
+        res.status(400).json({ message: "Password does not match email" });
     };
 });
 
