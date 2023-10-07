@@ -7,6 +7,7 @@ import LandingPage from './pages/LandingPage';
 import TodosPage from './pages/TodosPage';
 import Signin from './pages/SigninPage';
 import Signup from './pages/SignupPage';
+import ErrorPage from './pages/ErrorPage';
 import { TodosArrayContextProvider } from './context/TodosArrayContext';
 
 const router = createBrowserRouter([
@@ -32,6 +33,9 @@ const router = createBrowserRouter([
         element: <Signup />
       }
     ]
+  }, {
+    path: "*",
+    element: <ErrorPage />
   }
 ]);
 
