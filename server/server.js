@@ -14,6 +14,8 @@ require('dotenv').config();
 app.use(bodyParser.json());
 app.use(cors());
 
+const secret = process.env.ACCESS_TOKEN_SECRET;
+
 // middleware to validate token
 const withAuth = function(req, res, next) {
     const authHeaders = req.headers["authorization"]
@@ -90,7 +92,7 @@ app.post("/signup", async (req, res) => {
                     } else { 
                         console.log("inserted successfully");
                         const payload = { userId: userId, username: username };
-                        const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET);
+                        const token = jwt.sign(payload, secret);
                         res.status(200).json({ message: "Account created", token: token });
                     }
                 });
@@ -155,7 +157,7 @@ app.post("/signin", async (req, res) => {
             const payload = { userId: queryResults[0].userId, username: queryResults[0].username };
             // Expires in 1 hour
             const expirationTime = Math.floor(Date.now() / 1000) + 3600;
-            const token = jwt.sign(payload, process.env.ACCESS_TOKEN_SECRET, { expiresIn: expirationTime });
+            const token = jwt.sign(payload, secret, { expiresIn: expirationTime });
             res.status(200).json({ message: "password matches", token: token });
         });
     } else {
