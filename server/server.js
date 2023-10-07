@@ -55,7 +55,7 @@ app.listen(port);
 
 app.post("/signup", async (req, res) => {
     try{
-        const { username, email, password } = req.body.formData;
+        const { username, email, password } = req.body;
         const saltRounds = 12;
         const userId = uuid.v4();
         const emailIsValid = validator.isEmail(email);
