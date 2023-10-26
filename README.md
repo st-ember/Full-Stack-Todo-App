@@ -1,4 +1,4 @@
-#Full Stack Todo App
+# Full Stack Todo App
 
 ##Project Overview：
 Full Stack CRUD App with React Frontend, Express Backend, MySQL DB, 
