@@ -20,17 +20,17 @@ Node.js, MySQL
 2. Create .env file in server folder  
 Assign key-value pairs:  
 ACCESS_TOKEN_SECRET  
-DB_HOST
-DB_DATABASE
-DB_USER
-DB_PASSWORD
+DB_HOST  
+DB_DATABASE  
+DB_USER  
+DB_PASSWORD  
 
-3. Set up DB:
-CREATE DATABASE your_db_name
-CREATE TABLE users
+3. Set up DB:  
+CREATE DATABASE your_db_name  
+CREATE TABLE users  
 
 4. Set up tailwind:
-npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch
+` npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch
 
 5. Set up client:
 cd client npm install npm run dev
