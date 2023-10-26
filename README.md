@@ -1,9 +1,9 @@
 # Full Stack Todo App
 
-##Project Overview：
+## Project Overview：
 Full Stack CRUD App with React Frontend, Express Backend, MySQL DB, 
 
-##Features：
+## Features：
 Sign Up
 Sign In
 Log Out
@@ -11,13 +11,13 @@ Create Todo
 Edit Todo
 Delete Todo
 
-##System Design
+## System Design
 
 ##Environment Requirements：
 Node.js, MySQL
 
 
-##To Run Locally:
+## To Run Locally:
 1. clone repo
 
 2. Create .env file in folder
