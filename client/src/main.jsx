@@ -20,7 +20,7 @@ const router = createBrowserRouter([
       ),
     children: [
       {
-        path: "home",
+        path: "",
         element: <LandingPage />
       }, {
         path: "todo/:id",
