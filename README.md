@@ -30,7 +30,7 @@ CREATE DATABASE your_db_name
 CREATE TABLE users  
 
 4. Set up tailwind:
-`npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch
+`npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch`
 
 5. Set up client:
 cd client npm install npm run dev
