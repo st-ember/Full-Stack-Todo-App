@@ -17,9 +17,9 @@ Node.js, MySQL
 ## To Run Locally
 1. clone repo
 
-2. Create .env file in server folder
-- Assign key-value pairs:
-ACCESS_TOKEN_SECRET
+2. Create .env file in server folder  
+Assign key-value pairs:  
+ACCESS_TOKEN_SECRET  
 DB_HOST
 DB_DATABASE
 DB_USER
