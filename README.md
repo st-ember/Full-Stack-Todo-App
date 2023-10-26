@@ -27,17 +27,16 @@ DB_PASSWORD
 
 3. Set up DB:  
 CREATE DATABASE your_db_name  
-CREATE TABLE users  
+CREATE TABLE users (
+  
+)
+ 
 
-4. Set up tailwind:
+5. Set up tailwind:  
 `npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch`
 
-5. Set up client:
-cd client npm install npm run dev
+6. Set up client:  
+`cd client npm install npm run dev`
 
-6. Set up server:
-cd server npm install npm run dev
-
-
-
-
+7. Set up server:  
+`cd server npm install npm run dev`
