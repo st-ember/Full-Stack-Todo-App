@@ -26,12 +26,9 @@ DB_USER
 DB_PASSWORD  
 
 3. Set up DB:
-`CREATE DATABASE your_db_name`
-  
-  `CREATE TABLE users (userId VARCHAR(36), username VARCHAR(50), email VARCHAR(50), password_hash VARCHAR(60)
-)`  
-  
-   `CREATE TABLE todos ()VARCHAR`
+`CREATE DATABASE your_db_name`  
+`CREATE TABLE users (userId VARCHAR(36), username VARCHAR(50), email VARCHAR(50), password_hash VARCHAR(60))`  
+`CREATE TABLE todos ()VARCHAR`
 
 5. Set up tailwind:  
 `npx tailwindcss -i ./src/index.css -o ./dist/output.css --watch`
